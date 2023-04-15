@@ -19,8 +19,8 @@ const abTest = async ({ request, next, env }) => {
       url.pathname = "/control" + url.pathname;
       // change pathname and version name for 50% of traffic
       if (percentage < 50) {
-        url.pathname = "/test" + url.pathname;
         version = "test";
+        url.pathname = "/test" + url.pathname;
       }
       // get the static file from ASSETS, and attach a cookie
       const asset = await env.ASSETS.fetch(url);
@@ -28,6 +28,7 @@ const abTest = async ({ request, next, env }) => {
       response.headers.append("Set-Cookie", `${cookieName}=${version}; path=/`);
       return response;
     }
+    return env.ASSETS.fetch(url);
   }
   return next();
 };

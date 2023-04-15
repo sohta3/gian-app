@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Inter } from "next/font/google";
+import gianJpg from "./gian.jpg";
 
 export default function About() {
   return (
@@ -7,7 +7,7 @@ export default function About() {
       <h1>About</h1>
       <Image
         className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-        src="/gian.jpg"
+        src={gianJpg}
         alt="gian"
         width={180}
         height={37}

@@ -14,15 +14,15 @@ const abTest = async ({ request, next, env }) => {
     } else if (cookie && cookie.includes(`${cookieName}=test`)) {
       url.pathname = "/test" + url.pathname;
     } else {
-      const percentage = Math.floor(Math.random() * 100);
-      let version = "control"; // default version
-      url.pathname = "/control" + url.pathname;
-      // change pathname and version name for 50% of traffic
-      if (percentage < 50) {
-        version = "test";
+      const version = Math.random() < 0.5 ? "test" : "control"; // 50/50 split
+      if (version === "control") {
+        url.pathname = "/control" + url.pathname;
+      } else {
         url.pathname = "/test" + url.pathname;
       }
+
       // get the static file from ASSETS, and attach a cookie
+      console.log(url);
       const asset = await env.ASSETS.fetch(url);
       let response = new Response(asset.body, asset);
       response.headers.append("Set-Cookie", `${cookieName}=${version}; path=/`);

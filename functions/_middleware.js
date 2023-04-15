@@ -1,7 +1,7 @@
 const cookieName = "ab-test-cookie";
-const newHomepagePathName = "/test";
 
 const abTest = async ({ request, next, env }) => {
+  console.log(request);
   const url = new URL(request.url);
   if (url.pathname === "/about") {
     // if cookie ab-test-cookie=new then change the request to go to /test

@@ -1,6 +1,6 @@
-const NAME = "about";
+const NAME = "myExampleWorkersABTest";
 
-const handler = {
+const handler: ExportedHandler = {
   async fetch(req) {
     const url = new URL(req.url);
     // Enable Passthrough to allow direct access to control and test routes.

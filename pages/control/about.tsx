@@ -1,5 +1,5 @@
 import Image from "next/image";
-import gianJpg from "./gian.jpg";
+import { cloudflareLoader } from "@/libs/cloudflareLoader";
 
 export default function About() {
   return (
@@ -7,7 +7,8 @@ export default function About() {
       <h1>About</h1>
       <Image
         className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-        src={gianJpg}
+        loader={cloudflareLoader}
+        src="/gian.jpg"
         alt="gian"
         width={180}
         height={37}

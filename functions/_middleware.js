@@ -9,9 +9,9 @@ const abTest = async ({ request, next, env }) => {
 
     let cookie = request.headers.get("cookie");
     // is cookie set?
-    if (cookie && cookie.includes(`${NAME}=control`)) {
+    if (cookie && cookie.includes(`${cookieName}=control`)) {
       url.pathname = "/control" + url.pathname;
-    } else if (cookie && cookie.includes(`${NAME}=test`)) {
+    } else if (cookie && cookie.includes(`${cookieName}=test`)) {
       url.pathname = "/test" + url.pathname;
     } else {
       const percentage = Math.floor(Math.random() * 100);

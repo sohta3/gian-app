@@ -1,7 +1,6 @@
 const cookieName = "ab-test-cookie";
 
 const abTest = async ({ request, next, env }) => {
-  console.log(request);
   const url = new URL(request.url);
   if (url.pathname === "/about") {
     // if cookie ab-test-cookie=new then change the request to go to /test
@@ -22,7 +21,6 @@ const abTest = async ({ request, next, env }) => {
       }
 
       // get the static file from ASSETS, and attach a cookie
-      console.log(url);
       const asset = await env.ASSETS.fetch(url);
       let response = new Response(asset.body, asset);
       response.headers.append("Set-Cookie", `${cookieName}=${version}; path=/`);
